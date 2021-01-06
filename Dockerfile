@@ -15,7 +15,7 @@ RUN apt-get update -y
 RUN apt-get install -y google-chrome-stable
 
 # Set up Chromedriver Environment variables
-ENV CHROMEDRIVER_VERSION 2.19
+ENV CHROMEDRIVER_VERSION 2.46
 ENV CHROMEDRIVER_DIR /chromedriver
 RUN mkdir $CHROMEDRIVER_DIR
 
@@ -29,7 +29,11 @@ RUN chmod +x $CHROMEDRIVER_DIR/chromedriver
 
 
 #Flutter
-RUN git clone https://github.com/flutter/flutter.git -b stable --depth 1 /usr/local/flutter
+RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 #RUN export PATH="${PATH}:/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin"
 ENV PATH $PATH:/usr/local/flutter/bin/:/usr/local/flutter/bin/cache/dart-sdk/bin
+
+RUN flutter channel master
+RUN flutter upgrade
+RUN flutter config --enable-web
 RUN flutter doctor -v
