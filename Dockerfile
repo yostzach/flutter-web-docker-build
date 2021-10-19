@@ -2,15 +2,16 @@
 FROM ubuntu:20.04
 
 # We need wget to set up the PPA and xvfb to have a virtual screen and unzip to install the Chromedriver
-# Set up the Chrome PPA
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+
 
 RUN apt-get update
 RUN apt-get install -y wget gnupg unzip curl git xz-utils zip
 RUN apt-get install -y libglu1-mesa xvfb
-
+# Set up the Chrome PPA
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 # Install chrome
+RUN apt-get update
 RUN apt-get install -y google-chrome-stable
 
 # Set up Chromedriver Environment variables
