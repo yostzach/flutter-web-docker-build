@@ -1,5 +1,5 @@
 # See https://codeship.com/documentation/docker/browser-testing/
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 # We need wget to set up the PPA and xvfb to have a virtual screen and unzip to install the Chromedriver
 
