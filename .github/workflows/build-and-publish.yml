@@ -3,8 +3,8 @@ name: Build and Publish
 on:
   # run it on push to the default repository branch
   push:
-    #branches: [main]
-    branches: [1.001]
+    branches: [main]
+    #branches: [1.001,1.002]
   # run it during pull request
   pull_request:
 
@@ -42,8 +42,8 @@ jobs:
             yostzach/flutter-web-docker-build:latest
           #  ghcr.io/oskardudycz/eventsourcing.nodejs/simple:latest
           # build on feature branches, push only on main branch
-          #push: ${{ github.ref == 'refs/heads/main' }}
-          push: true
+          push: ${{ github.ref == 'refs/heads/main' }}
+          #push: true
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
